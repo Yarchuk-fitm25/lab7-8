@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Навчальний планувальник{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head><body>
+<header><h1>Планувальник навчальних завдань</h1>
+<nav><a href="{{ url_for('home') }}">Головна</a>
+<a href="{{ url_for('task_list') }}">Усі завдання</a>
+<a href="{{ url_for('add_task') }}">Додати завдання</a></nav></header>
+<main>
+{% for category, message in get_flashed_messages(with_categories=true) %}
+<p class="notice">{{ message }}</p>
+{% endfor %}
+{% block content %}{% endblock %}
+</main><footer>Навчальний проєкт, {{ year }}</footer>
+</body></html>

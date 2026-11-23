@@ -1,0 +1,14 @@
+{% extends 'planner/base.html' %}
+{% block title %}Головна | Планувальник{% endblock %}
+{% block content %}
+<h2>Мої навчальні завдання</h2>
+<p>Кількість предметів: {{ courses_count }}</p>
+<h3>Найближчі завдання</h3>
+{% if tasks %}
+<ul>{% for task in tasks %}
+<li><a href="{% url 'planner:task_detail' task.id %}">{{ task.title }}</a>
+({{ task.course.name }}, до {{ task.due_date|date:'d.m.Y' }})</li>
+{% endfor %}</ul>
+{% else %}<p>Поки немає завдань. Додай перше!</p>{% endif %}
+<a class="button" href="{% url 'planner:add_task' %}">Нове завдання</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Список завдань{% endblock %}
+{% block content %}
+<h2>Список завдань</h2>
+<p>Фільтр: <a href="{{ url_for('task_list') }}">Усі</a> |
+<a href="?status=todo">Заплановано</a> | <a href="?status=doing">У роботі</a> |
+<a href="?status=done">Виконано</a></p>
+{% if tasks %}<ul>{% for task in tasks %}
+<li><a href="{{ url_for('task_detail', task_id=task.id) }}">{{ task.title }}</a>
+— {{ task.course.name }} ({{ task.status }})
+{% if task.is_important %}<strong>Важливе</strong>{% endif %}</li>
+{% endfor %}</ul>
+{% else %}<p>Завдань за цим фільтром немає.</p>{% endif %}
+<p>Знайдено: {{ tasks|length }}</p>
+{% endblock %}

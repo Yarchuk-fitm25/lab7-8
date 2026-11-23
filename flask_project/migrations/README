@@ -1,0 +1,3 @@
+Навчальний репозиторій міграцій Flask-Migrate / Alembic.
+0001 створює таблиці, 0002 додає is_important.
+На чистій базі виконайте: python -m flask --app app:app db upgrade

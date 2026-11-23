@@ -1,0 +1,14 @@
+{% extends 'planner/base.html' %}
+{% block title %}{{ task.title }}{% endblock %}
+{% block content %}
+<h2>{{ task.title }}</h2>
+<p><strong>Предмет:</strong> {{ task.course.name }}</p>
+<p><strong>Термін:</strong> {{ task.due_date|date:'d.m.Y' }}</p>
+<p><strong>Пріоритет:</strong> {{ task.get_priority_display }}</p>
+<p><strong>Опис:</strong> {{ task.summary }}</p>
+<p><strong>Позначки:</strong>
+{% for label in task.labels.all %}{{ label.name }}{% if not forloop.last %}, {% endif %}
+{% empty %}Немає{% endfor %}</p>
+{% if task.plan %}<h3>План</h3><p>{{ task.plan.steps }}</p>{% endif %}
+<a href="{% url 'planner:task_list' %}">Повернутися до списку</a>
+{% endblock %}

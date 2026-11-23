@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Навчальний планувальник{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'planner/style.css' %}">
+</head>
+<body>
+<header><h1>Планувальник навчальних завдань</h1>
+<nav><a href="{% url 'planner:home' %}">Головна</a>
+<a href="{% url 'planner:task_list' %}">Усі завдання</a>
+<a href="{% url 'planner:add_task' %}">Додати завдання</a></nav></header>
+<main>
+{% for message in messages %}<p class="notice">{{ message }}</p>{% endfor %}
+{% block content %}{% endblock %}
+</main>
+<footer>Навчальний проєкт, {{ year }}</footer>
+</body>
+</html>

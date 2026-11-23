@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ task.title }}{% endblock %}
+{% block content %}
+<h2>{{ task.title }}</h2>
+<p><strong>Предмет:</strong> {{ task.course.name }}</p>
+<p><strong>Термін:</strong> {{ task.due_date.strftime('%d.%m.%Y') }}</p>
+<p><strong>Пріоритет:</strong> {{ task.priority }}</p>
+<p><strong>Опис:</strong> {{ task.summary }}</p>
+<p><strong>Позначки:</strong>
+{% for label in task.labels %}{{ label.name }}{% if not loop.last %}, {% endif %}
+{% else %}Немає{% endfor %}</p>
+{% if task.plan %}<h3>План</h3><p>{{ task.plan.steps }}</p>{% endif %}
+<a href="{{ url_for('task_list') }}">Повернутися до списку</a>
+{% endblock %}

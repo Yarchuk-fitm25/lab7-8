@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Додати завдання{% endblock %}
+{% block content %}
+<h2>Додати завдання</h2>
+<form method="post" novalidate>
+{{ form.hidden_tag() }}
+{% for field in form if field.type not in ['CSRFTokenField', 'SubmitField'] %}
+<div class="field">{{ field.label }} {{ field() }}
+{% for error in field.errors %}<p class="error">{{ error }}</p>{% endfor %}
+</div>
+{% endfor %}
+{{ form.submit() }}
+</form>
+{% endblock %}
